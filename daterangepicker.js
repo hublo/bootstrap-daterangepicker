@@ -22,7 +22,7 @@
             options = {};
 
         //create the picker HTML object
-        var DRPTemplate = '<div class="daterangepicker dropdown-menu">' +
+        var DRPTemplate = '<div class="daterangepicker">' +
                 '<div class="calendar left"></div>' +
                 '<div class="calendar right"></div>';
 
@@ -91,7 +91,8 @@
                 'keyup.daterangepicker': $.proxy(this.updateFromControl, this)
             });
         } else {
-            this.element.on('click.daterangepicker', $.proxy(this.toggle, this));
+            // FIXME:
+            // this.element.on('click.daterangepicker', $.proxy(this.toggle, this));
         }
 
     };

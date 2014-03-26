@@ -16,11 +16,18 @@
         //element that triggered the date range picker
         this.element = $(element);
 
+
+        //custom options
+        if (typeof options !== 'object' || options === null)
+            options = {};
+
         //create the picker HTML object
         var DRPTemplate = '<div class="daterangepicker dropdown-menu">' +
                 '<div class="calendar left"></div>' +
-                '<div class="calendar right"></div>' +
-                '<div class="ranges">' +
+                '<div class="calendar right"></div>';
+
+        if (typeof options.hideRanges === 'undefined' || (typeof options.hideRanges === 'boolean' && options.hideRanges == false)) {
+            DRPTemplate += '<div class="ranges">' +
                   '<div class="range_inputs">' +
                     '<div class="daterangepicker_start_input">' +
                       '<label for="daterangepicker_start"></label>' +
@@ -33,17 +40,15 @@
                     '<button class="applyBtn" disabled="disabled"></button>&nbsp;' +
                     '<button class="cancelBtn"></button>' +
                   '</div>' +
-                '</div>' +
-              '</div>';
-
-        //custom options
-        if (typeof options !== 'object' || options === null)
-            options = {};
+                '</div>';
+        }
+        DRPTemplate += '</div>';
 
         this.parentEl = (typeof options === 'object' && options.parentEl && $(options.parentEl)) || $(this.parentEl);
-        this.container = $(DRPTemplate).appendTo(this.parentEl);
+        this.container = $(DRPTemplate).appendTo(this.parentEl);        
 
         this.setOptions(options, cb);
+        
 
         //apply CSS classes and labels to buttons
         var c = this.container;
@@ -103,6 +108,8 @@
             this.maxDate = false;
             this.dateLimit = false;
 
+            this.applyOnClick = false;
+            this.hideRanges = false;
             this.showDropdowns = false;
             this.showWeekNumbers = false;
             this.timePicker = false;
@@ -163,6 +170,9 @@
             if (typeof options.minDate === 'object')
                 this.minDate = moment(options.minDate);
 
+            if (typeof options.hideRanges === 'boolean')
+                this.hideRanges = options.hideRanges;
+
             if (typeof options.maxDate === 'object')
                 this.maxDate = moment(options.maxDate);
 
@@ -174,6 +184,11 @@
 
             if (typeof options.dateLimit === 'object')
                 this.dateLimit = options.dateLimit;
+
+            if (typeof options.applyOnClick === 'boolean')
+                this.applyOnClick = options.applyOnClick;
+            else if (this.hideRanges)
+                this.applyOnClick = true;
 
             // update day names order to firstDay
             if (typeof options.locale === 'object') {
@@ -677,6 +692,9 @@
 
             if (this.singleDatePicker)
                 this.clickApply();
+            if (this.applyOnClick) {
+                this.updateInputText();
+            }
         },
 
         clickApply: function (e) {

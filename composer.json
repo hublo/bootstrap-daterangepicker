@@ -1,0 +1,14 @@
+{
+    "name": "chaka2828/bootstrap-daterangepicker",
+    "type":        "library",
+    "description": "Date Range Picker for Bootstrap",
+    "keywords":    ["datepicker", "bootstrap", "jquery"],
+    "homepage":    "https://github.com/dangrossman/bootstrap-daterangepicker",
+    "license":     "MIT",
+    "authors": [
+        {
+            "name": "Dan Grossman",
+            "homepage": "http://www.dangrossman.info"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+//
+// Mixins
+// --------------------------------------------------
+.daterangepicker-origin-indicator(before; @top; @left; @border-size; @border-color) {
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+}
+
+.daterangepicker-origin-indicator(@_; @top; @left; @border-size; @border-color) {
+   position: absolute;
+   top: @top;
+   left: @left;
+   display: inline-block;
+   border-right: @border-size solid transparent;
+   border-bottom: @border-size solid @border-color;
+   border-left: @border-size solid transparent;
+   content: '';
+}
+
+.daterangepicker-cell(@cell-size) {
+    text-align: center;
+    width: @cell-size;
+    height: @cell-size;
+    border-radius: @daterangepicker-border-radius;
+    cursor: pointer;
+    white-space: nowrap;
+}

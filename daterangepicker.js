@@ -171,7 +171,7 @@
                 this.minDate = moment(options.minDate);
 
             if (typeof options.hideRanges === 'boolean')
-                this.hideRange = options.hideRange;
+                this.hideRanges = options.hideRanges;
 
             if (typeof options.maxDate === 'object')
                 this.maxDate = moment(options.maxDate);
@@ -186,7 +186,7 @@
                 this.dateLimit = options.dateLimit;
 
             if (typeof options.applyOnClick === 'boolean')
-                this.applyOnClick = options.applyOnClick
+                this.applyOnClick = options.applyOnClick;
             else if (this.hideRanges)
                 this.applyOnClick = true;
 
@@ -513,7 +513,6 @@
             this.container.show();
             this.move();
 
-            $(document).on('keypress.daterangepicker', $.proxy(this.keyPressApply, this));
             $(document).on('click.daterangepicker', $.proxy(this.outsideClick, this));
             // also explicitly play nice with Bootstrap dropdowns, which stopPropagation when clicking them
             $(document).on('click.daterangepicker', '[data-toggle=dropdown]', $.proxy(this.outsideClick, this));
@@ -694,19 +693,11 @@
             if (this.singleDatePicker)
                 this.clickApply();
             if (this.applyOnClick) {
-                console.log('click');
                 this.updateInputText();
             }
         },
 
         clickApply: function (e) {
-            this.updateInputText();
-            this.hide();
-            this.element.trigger('apply.daterangepicker', this);
-        },
-
-        keyPressApply: function (e) {
-            e.preventDefault();
             this.updateInputText();
             this.hide();
             this.element.trigger('apply.daterangepicker', this);

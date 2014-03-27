@@ -91,7 +91,7 @@
                 'keyup.daterangepicker': $.proxy(this.updateFromControl, this)
             });
         } else {
-            // FIXME:
+            // FIXME
             // this.element.on('click.daterangepicker', $.proxy(this.toggle, this));
         }
 
@@ -188,8 +188,9 @@
 
             if (typeof options.applyOnClick === 'boolean')
                 this.applyOnClick = options.applyOnClick;
-            else if (this.hideRanges)
+            else if (this.hideRanges) {
                 this.applyOnClick = true;
+            }
 
             // update day names order to firstDay
             if (typeof options.locale === 'object') {
@@ -625,7 +626,6 @@
         },
 
         enterDate: function (e) {
-
             var title = $(e.target).attr('data-title');
             var row = title.substr(1, 1);
             var col = title.substr(3, 1);
@@ -640,6 +640,7 @@
         },
 
         clickDate: function (e) {
+
             var title = $(e.target).attr('data-title');
             var row = title.substr(1, 1);
             var col = title.substr(3, 1);
@@ -694,7 +695,7 @@
             if (this.singleDatePicker)
                 this.clickApply();
             if (this.applyOnClick) {
-                this.updateInputText();
+                this.notify();
             }
         },
 
@@ -859,7 +860,6 @@
         },
 
         renderCalendar: function (calendar, selected, minDate, maxDate) {
-
             var html = '<div class="calendar-date">';
             html += '<table class="table-condensed">';
             html += '<thead>';
@@ -1001,7 +1001,6 @@
         },
 
         remove: function() {
-
             this.container.remove();
             this.element.off('.daterangepicker');
             this.element.removeData('daterangepicker');

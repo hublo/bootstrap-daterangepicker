@@ -1,9 +1,5 @@
 .daterangepicker {
-    // FIXME:
-    // position: absolute;
     background: @daterangepicker-container-bg;
-    // top: 100px;
-    // left: 20px;
     padding: @daterangepicker-container-padding-vertical @daterangepicker-container-padding-horizontal;
     margin-top: 1px;
     border-radius: @daterangepicker-border-radius;
@@ -15,12 +11,6 @@
         display: block;
     }
     &.opensleft {
-        &:before {
-            .daterangepicker-origin-indicator(before, -7px, 9px, 7px, #ccc);
-        }
-        &:after {
-            .daterangepicker-origin-indicator(after, -6px, 10px, 6px, #fff);
-        }
         .ranges,
         .calendar {
             float: left;
@@ -28,12 +18,6 @@
         }
     }
     &.opensright {
-        &:before {
-            .daterangepicker-origin-indicator(before, -7px, 9px, 7px, #ccc);
-        }
-        &:after {
-            .daterangepicker-origin-indicator(after, -6px, 10px, 6px, #fff);
-        }
         .ranges,
         .calendar {
             float: right;
